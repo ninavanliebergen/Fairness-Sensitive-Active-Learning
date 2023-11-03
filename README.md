@@ -3,7 +3,7 @@
 This repository is part of the thesis:
 Fairness-Sensitive Active Learning
 
-**Abstratc**
+**Abstract**
 _Public organizations increasingly use machine learning models for decision support, but they are also generally constrained by limited labeled data.  Fortunately, active learning has proven to be useful to efficiently select instances important for labeling, thus reducing the impact of this limitation. Models used by the public sector have also shown to exhibit variour biases (e.g. towards gender or ethnicity), phenomena that highlight the need and urgency to address fairness concerns. This research aims to experimentally study the relationship between active learning and fairness. Its objective is to assess fairness risks tied to active learning and explore fairness-sensitive methods for active learning. In this study, two common active learning types are evaluated for accuracy and unfairness. An existing fairness-focused active learning solution (Fair Active Learning, or FAL) is examined, and two novel fairness-sensitive methods, \textit{ReSGrAL} and \textit{Fair ReSGrAL}, are proposed. Our experiments shows that active learning can increase model unfairness beyond the dataset bias, and thus caution is needed when using active learning in sensitive contexts. However, they also show that techniques like ReSGrAL can mitigate unfairness without sacrificing accuracy, improving fairness in decision support systems._
 
 In this repo, you can find the code used.
