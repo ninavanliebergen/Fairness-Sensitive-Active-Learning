@@ -4,6 +4,7 @@
 For running one of the sampling strategies, do:
  ```bash
  python prompts_reader.py <n_samples> <dataset_path> <target_value> <sensitive_attr> <subgroups> <dataset_name>
+ bash```
 
 ### For running Random Sampling, Uncertainty Sampling, Representative Sampling, ReSGrAL Uncertainty and ReSGrAL Representative:
 For example, when sampling with random sampling on the adult dataset:
