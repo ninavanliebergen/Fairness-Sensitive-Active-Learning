@@ -1,1 +1,1 @@
-# Fairness-Sensitive-Active-Learning
+# Fairness Sensitive Active Learning
