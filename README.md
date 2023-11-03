@@ -13,8 +13,8 @@ In this repo, you can find the code used.
 - pandas
 - numpy
 - scikit-learn
-- modAL
-- fairlearn
+- modAL (https://modal-python.readthedocs.io/en/latest/#)
+- fairlearn (https://fairlearn.org/)
 
 ## Running the code:
 
