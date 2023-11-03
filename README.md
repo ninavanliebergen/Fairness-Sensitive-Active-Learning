@@ -8,6 +8,14 @@ _Public organizations increasingly use machine learning models for decision supp
 
 In this repo, you can find the code used.
 
+## Dependencies
+- Python 3.10
+- pandas
+- numpy
+- scikit-learn
+- modAL
+- fairlearn
+
 ## Running the code:
 
 ### General Sampling Strategies and ReSGrAL:
