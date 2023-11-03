@@ -33,3 +33,10 @@ For exaxample, to run FairReSGrAL with a threshold of 0.3, run:
 ```
 python FAL.py 1 ../datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.3
 ```
+
+## Errors:
+When the following errors arises:
+```
+ValueError: This solver needs samples of at least 2 classes in the data, but the data contains only one class: 0
+```
+this means that the first 8 random samples only contain 1 type of label (only 0's or only 1's). To solve this, just run it again.
