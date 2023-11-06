@@ -43,11 +43,11 @@ However, when the fraction of the dataset and the amount of workers are not spec
 ### FairReSGrAL:
 When running FairReSGrAL, one needs to specify the threshold:
 ```
-python FAL.py <n_samples> <dataset_path> <target_value> <sensitive_attr> <subgroups> <dataset_name> <threshold> <fraction_dataset> <amount_of_workers>
+python ReSGrAL_Uncertainty.py <n_samples> <dataset_path> <target_value> <sensitive_attr> <subgroups> <dataset_name> <threshold> <fraction_dataset> <amount_of_workers>
 ```
 For exaxample, to run FairReSGrAL with a threshold of 0.3, run:
 ```
-python FAL.py 1 ../Datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.3
+python ReSGrAL_Uncertainty.py 1 ../Datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.3
 ```
 
 ## Common Errors:
