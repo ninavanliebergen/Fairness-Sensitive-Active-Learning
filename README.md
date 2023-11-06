@@ -25,7 +25,7 @@ For running one of the sampling strategies, do:
 ```
 For example, when sampling with random sampling on the adult dataset:
 ```
-  python Random.py 1 ../datasets/AdultDatasetGroupEncoded.csv income gender groups Adult
+  python Random.py 1 ../Datasets/AdultDatasetGroupEncoded.csv income gender groups Adult
 ```
 The results will be saved in ../SamplingStrategies/Results/
 
@@ -36,7 +36,7 @@ python FAL.py <n_samples> <dataset_path> <target_value> <sensitive_attr> <subgro
 ```
 For example, to run FAL on only 20% of the dataset with 16 workers:
 ```
-python FAL.py 1 ../datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.2 16
+python FAL.py 1 ../Datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.2 16
 ```
 However, when the fraction of the dataset and the amount of workers are not specified, it is runned on the total (100%) of the dataset in serial.
 
@@ -47,7 +47,7 @@ python FAL.py <n_samples> <dataset_path> <target_value> <sensitive_attr> <subgro
 ```
 For exaxample, to run FairReSGrAL with a threshold of 0.3, run:
 ```
-python FAL.py 1 ../datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.3
+python FAL.py 1 ../Datasets/AdultDatasetGroupEncoded.csv income gender groups Adult 0.3
 ```
 
 ## Common Errors:
