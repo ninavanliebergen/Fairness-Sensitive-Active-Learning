@@ -176,34 +176,31 @@ def plot_performance_uncertainty_profiles(dataset_name, df, y_label, S, n_experi
                 else:
                     fairness_histories_profiles[profile][iteration].append(fairness_history_profiles[profile][iteration])
 
-        # Store F1-score data
         for j in range(len(f1_score_history)):
             if i == 0:
                 f1_scores_histories[j] = []
                 f1_scores_histories[j].append(f1_score_history[j])
             else:
                 f1_scores_histories[j].append(f1_score_history[j])
-
-        # Store F1-score data per profile
-        for profile in performance_history_profiles:
-            for iteration in range(len(performance_history)):
+        for profile in f1_scores_history_profiles:
+            for iteratie in range(len(f1_score_history)):
                 if i == 0:
-                    f1_scores_histories_profiles[profile][iteration] = []
-                    f1_scores_histories_profiles[profile][iteration].append(fairness_history_profiles[profile][iteration])
+                    f1_scores_histories_profiles[profile][iteratie] = []
+                    f1_scores_histories_profiles[profile][iteratie].append(f1_scores_history_profiles[profile][iteratie])
                 else:
-                    f1_scores_histories_profiles[profile][iteration].append(fairness_history_profiles[profile][iteration])
+                    f1_scores_histories_profiles[profile][iteratie].append(f1_scores_history_profiles[profile][iteratie])
 
-    # Save the results - Accuracy
-    save_dict_to_csv(performance_histories_profiles, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_accuracy_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
-    save_dict_to_csv(performance_histories, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_accuracy_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    # save the results - Accuracy
+    save_dict_to_csv(performance_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_accuracy_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    save_dict_to_csv(performance_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_accuracy_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
 
-    # Save the results - Fairness
-    save_dict_to_csv(fairness_histories_profiles, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_fairness_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
-    save_dict_to_csv(fairness_histories, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_fairness_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    # save the results - Fairness
+    save_dict_to_csv(fairness_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_fairness_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    save_dict_to_csv(fairness_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_fairness_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
 
-    # Save the results - F1-score
-    save_dict_to_csv(f1_scores_histories_profiles, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_f1_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
-    save_dict_to_csv(f1_scores_histories, 'Results/' + str(dataset_name) + 'Uncertainty' + str(random_number) + 'experiments_f1_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    # save the results - F1-score
+    save_dict_to_csv(f1_scores_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    save_dict_to_csv(f1_scores_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
 
 
 ################### START OF PROGRAM ##########################

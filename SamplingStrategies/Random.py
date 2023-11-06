@@ -28,6 +28,7 @@ import fairlearn
 from fairlearn.metrics import demographic_parity_difference, demographic_parity_ratio, equalized_odds_difference, equalized_odds_ratio
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.filterwarnings('always')  # "error", "ignore", "always", "default", "module" or "once"
 
 import sys
 import time
@@ -96,7 +97,7 @@ def active_learning_random_profiles(X, y, S, n_start, n_instances, profiles, see
 
         performance_history_profiles = calculate_acc_per_profile(learner, y_pred, y_test, profiles_test, performance_history_profiles)
         fairness_history_profiles = calculate_fairness_per_profile(learner, y_pred, y_test, S_test, profiles_test, fairness_history_profiles, fairness_metric)
-        # f1_scores_history_profiles = calculate_f1_per_profile(learner, y_pred, y_test, profiles_test, f1_scores_history_profiles)
+        f1_scores_history_profiles = calculate_f1_per_profile(learner, y_pred, y_test, profiles_test, f1_scores_history_profiles)
 
         np.random.seed()
         query_idx = np.random.choice(X_train_pool.shape[0], size=n_instances, replace=False)
@@ -132,7 +133,6 @@ def plot_performance_random_profiles(dataset_name, df, y_label, S, n_experiments
     for i in range(n_experiments):
         print('experiment', i, random_numbers)
         performance_history, fairness_history, f1_score_history, instances, performance_history_profiles, fairness_history_profiles, f1_scores_history_profiles = active_learning_random_profiles(df.values, y_label.values, S.values, 8, 1, profiles, random_numbers[i], fairness_metric, n_queries=n_queries, model_mode=model_mode)
-
         accuracies.append(performance_history)
         fairness.append(fairness_history)
         f1_scores.append(f1_score_history)
@@ -171,13 +171,13 @@ def plot_performance_random_profiles(dataset_name, df, y_label, S, n_experiments
                 f1_scores_histories[j].append(f1_score_history[j])
             else:
                 f1_scores_histories[j].append(f1_score_history[j])
-        for profile in performance_history_profiles:
-            for iteratie in range(len(performance_history)):
+        for profile in f1_scores_history_profiles:
+            for iteratie in range(len(f1_score_history)):
                 if i == 0:
                     f1_scores_histories_profiles[profile][iteratie] = []
-                    f1_scores_histories_profiles[profile][iteratie].append(fairness_history_profiles[profile][iteratie])
+                    f1_scores_histories_profiles[profile][iteratie].append(f1_scores_history_profiles[profile][iteratie])
                 else:
-                    f1_scores_histories_profiles[profile][iteratie].append(fairness_history_profiles[profile][iteratie])
+                    f1_scores_histories_profiles[profile][iteratie].append(f1_scores_history_profiles[profile][iteratie])
 
     # save the results - Accuracy
     save_dict_to_csv(performance_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_accuracy_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
@@ -188,8 +188,8 @@ def plot_performance_random_profiles(dataset_name, df, y_label, S, n_experiments
     save_dict_to_csv(fairness_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_fairness_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
 
     # save the results - F1-score
-    # save_dict_to_csv(f1_scores_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
-    # save_dict_to_csv(f1_scores_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    save_dict_to_csv(f1_scores_histories_profiles, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_profiles_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
+    save_dict_to_csv(f1_scores_histories, 'Results/' + str(dataset_name) + 'Random' + str(random_number) + 'experiments_f1_histories_total_' + str(len(np.unique(profiles))) + 'profiles' + str(n_queries) + 'iter_' + '.csv')
 
     return
 
@@ -233,7 +233,11 @@ if __name__ == "__main__":
     df = df.drop(subgroups, axis=1)
 
     ###########################
+    # numbers = [377, 52, 346, 279, 44, 302, 216, 15, 47, 111, 119, 258, 13, 287, 101, 366, 332, 359, 214, 112]
+
+    # for random_number in numbers:
     plot_performance_random_profiles(dataset_name, df, y_label, S, 1, profiles, demographic_parity_difference, n_samples, random_number, model_mode = RandomForestClassifier)
+    
     end_time = time.time()
 
     elapsed_time = end_time - start_time

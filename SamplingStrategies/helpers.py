@@ -79,7 +79,7 @@ def calculate_f1_per_profile(learner, y_pred, y_test, profiles_test, f1_scores_h
         profile_p_dict[profile_idx].append(y_pred[i])
 
     for profile in profiles_test.unique():
-        f1 = f1_score(profile_y_dict[profile], profile_p_dict[profile])
+        f1 = f1_score(profile_y_dict[profile], profile_p_dict[profile], zero_division=1.0)
         if profile not in f1_scores_history_profiles:
             f1_scores_history_profiles[profile] = []
         f1_scores_history_profiles[profile].append(f1)
